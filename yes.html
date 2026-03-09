@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yay! You said YES! 💖</title>
     <style>
+        /* Same styles as before – I'll keep them compact */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
-            font-family: 'Segoe UI', 'Arial', sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             background: linear-gradient(145deg, #ffe6f0 0%, #ffd9e8 100%);
             color: #b34167;
             min-height: 100vh;
@@ -21,7 +21,6 @@
             flex-direction: column;
             align-items: center;
         }
-
         .container {
             max-width: 800px;
             width: 100%;
@@ -33,29 +32,14 @@
             border: 1px solid rgba(255, 255, 255, 0.5);
             margin-top: 20px;
         }
-
-        h1 {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
-        }
-
-        .subhead {
-            text-align: center;
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
-            font-style: italic;
-        }
-
-        /* Photo gallery */
+        h1 { font-size: 3rem; text-align: center; margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(255,255,255,0.8); }
+        .subhead { text-align: center; font-size: 1.8rem; margin-bottom: 2rem; font-style: italic; }
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1rem;
             margin: 2rem 0;
         }
-
         .gallery img {
             width: 100%;
             height: 200px;
@@ -65,45 +49,27 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             transition: transform 0.3s;
         }
-
-        .gallery img:hover {
-            transform: scale(1.05);
-        }
-
-        /* Promises section */
+        .gallery img:hover { transform: scale(1.05); }
         .promises {
             background: rgba(255, 255, 255, 0.5);
             border-radius: 30px;
             padding: 2rem;
             margin: 2rem 0;
         }
-
-        .promises h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .promises ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
+        .promises h2 { font-size: 2rem; margin-bottom: 1rem; text-align: center; }
+        .promises ul { list-style-type: none; padding: 0; }
         .promises li {
             font-size: 1.3rem;
             margin: 1rem 0;
             padding-left: 2rem;
             position: relative;
         }
-
         .promises li::before {
             content: "💕";
             position: absolute;
             left: 0;
             top: 0;
         }
-
-        /* Music player */
         .music-player {
             background: rgba(255, 200, 220, 0.5);
             border-radius: 50px;
@@ -111,21 +77,37 @@
             text-align: center;
             margin: 2rem 0;
         }
-
-        .music-player audio {
-            width: 100%;
-            max-width: 300px;
-            margin-top: 0.5rem;
-        }
-
-        /* Footer */
-        .footer {
-            text-align: center;
+        .music-player audio { width: 100%; max-width: 300px; margin-top: 0.5rem; }
+        .music-fallback {
+            display: none;
+            background: #ff8aa1;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
             font-size: 1.2rem;
-            margin-top: 1rem;
+            cursor: pointer;
+            margin: 1rem auto;
+            box-shadow: 0 5px 0 #b34167;
         }
-
-        /* Confetti canvas (hidden by default) */
+        .music-fallback:hover { transform: translateY(3px); box-shadow: 0 2px 0 #b34167; }
+        .next-btn {
+            background: #ff8aa1;
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            border-radius: 60px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 2rem auto 1rem;
+            display: inline-block;
+            box-shadow: 0 8px 0 #b34167, 0 8px 20px rgba(255,80,120,0.4);
+            border: 2px solid white;
+            transition: 0.1s;
+        }
+        .next-btn:hover { transform: translateY(5px); box-shadow: 0 3px 0 #b34167, 0 8px 20px rgba(255,80,120,0.4); }
+        .footer { text-align: center; font-size: 1.2rem; margin-top: 1rem; }
         #confetti-canvas {
             position: fixed;
             top: 0;
@@ -135,7 +117,6 @@
             pointer-events: none;
             z-index: 1000;
         }
-
         @media (max-width: 500px) {
             h1 { font-size: 2.2rem; }
             .subhead { font-size: 1.4rem; }
@@ -153,7 +134,7 @@
         <!-- Photo Gallery -->
         <h2 style="text-align:center; margin: 1rem 0;">Our beautiful moments</h2>
         <div class="gallery">
-            <!-- Replace these placeholders with your actual images -->
+            <!-- Replace with your actual images -->
             <img src="images/photo1.jpg" alt="Memory 1" onerror="this.src='https://via.placeholder.com/200x200?text=Photo+1'">
             <img src="images/photo2.jpg" alt="Memory 2" onerror="this.src='https://via.placeholder.com/200x200?text=Photo+2'">
             <img src="images/photo3.jpg" alt="Memory 3" onerror="this.src='https://via.placeholder.com/200x200?text=Photo+3'">
@@ -166,53 +147,79 @@
             <ul>
                 <li>I will always make time for you, no matter how busy life gets.</li>
                 <li>I will listen to you, support you, and cherish you every day.</li>
-                <li>I will surprise you with little things that make you smile no matter how small it is.</li>
+                <li>I will surprise you with little things that make you smile.</li>
                 <li>I will be your biggest cheerleader and your safest space.</li>
                 <li>I promise to love you more and more with each passing day.</li>
-                <li>And i promise to fuck you so hard you will not be able to get me out of your mind.</li>
+                <li>And lastly i promise to cuddle you and fuck you to the point you wouldnt be able to get me out of your mind.</li>
             </ul>
         </div>
 
         <!-- Music player -->
         <div class="music-player">
             <p>🎵 A song for us 🎵</p>
-            <!-- Replace 'song.mp3' with your actual audio file path or online URL -->
-            <audio id="loveSong" controls autoplay>
+            <audio id="loveSong" controls>
                 <source src="sililo.mp3" type="audio/mpeg">
                 Your browser does not support the audio element.
             </audio>
-            <p style="font-size:0.9rem; margin-top:0.5rem;">(If music doesn't play automatically, click the play button above.)</p>
+            <button id="playMusicBtn" class="music-fallback">Click to play music 💖</button>
+        </div>
+
+        <!-- Button to next page -->
+        <div style="text-align: center;">
+            <button class="next-btn" onclick="window.location.href='future.html';">Continue to Our Future 🌟</button>
         </div>
 
         <div class="footer">
-            I'm the luckiest person in the world. Thank you for saying yes!, and choosing me... 💖
+            I'm the luckiest person in the world. Thank you for saying yes! 💖
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
     <script>
-        // Trigger confetti on page load
         window.onload = function() {
+            // Confetti burst
             confetti({
                 particleCount: 150,
                 spread: 70,
                 origin: { y: 0.6 },
                 colors: ['#ff8aa1', '#ffb3c6', '#ffffff', '#ffd9e8']
             });
-            // Try to ensure audio plays (browsers may block autoplay if no user interaction)
-            // But since we redirected from a click, autoplay should work.
-            // If not, we can attempt to play programmatically:
+
+            // Attempt to autoplay music
             const audio = document.getElementById('loveSong');
-            audio.play().catch(e => console.log('Autoplay prevented; user can click play.'));
+            const playBtn = document.getElementById('playMusicBtn');
+
+            audio.volume = 0.5; // Set volume to 50% to avoid startling
+
+            let playPromise = audio.play();
+
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    // Autoplay succeeded – hide fallback button
+                    playBtn.style.display = 'none';
+                }).catch(() => {
+                    // Autoplay blocked – show fallback button
+                    playBtn.style.display = 'inline-block';
+                });
+            }
+
+            // Fallback button: play music and hide itself
+            playBtn.addEventListener('click', () => {
+                audio.play();
+                playBtn.style.display = 'none';
+            });
         };
 
-        // Additional confetti burst on any click (optional)
-        document.body.addEventListener('click', function() {
-            confetti({
-                particleCount: 50,
-                spread: 50,
-                origin: { y: 0.6 }
-            });
+        // Additional confetti on click anywhere (optional)
+        document.body.addEventListener('click', function(e) {
+            // Don't trigger confetti if clicking on a button or link
+            if (e.target.tagName !== 'BUTTON' && e.target.tagName !== 'A') {
+                confetti({
+                    particleCount: 30,
+                    spread: 50,
+                    origin: { y: 0.6 }
+                });
+            }
         });
     </script>
 </body>

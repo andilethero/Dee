@@ -64,6 +64,40 @@
             font-size: 2rem;
         }
 
+        /* Timer styles */
+        .timer-container {
+            background: rgba(255, 230, 240, 0.6);
+            border-radius: 50px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border: 2px dashed #ffa5b9;
+        }
+
+        .timer-label {
+            font-size: 1.3rem;
+            color: #b34167;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .timer-display {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #b34167;
+            background: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 60px;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(255, 120, 160, 0.3);
+            font-family: 'Courier New', monospace;
+        }
+
+        .timer-unit {
+            font-size: 1rem;
+            color: #8b3a5a;
+            margin: 0 0.2rem;
+        }
+
         .cute-btn {
             background: #ff8aa1;
             border: none;
@@ -92,7 +126,6 @@
             box-shadow: 0 0 0 #b34167, 0 8px 20px rgba(255, 80, 120, 0.4);
         }
 
-        /* Small floating hearts (optional decoration) */
         .floating-heart {
             position: absolute;
             font-size: 1.5rem;
@@ -108,36 +141,76 @@
             100% { transform: translateY(0px); }
         }
 
-        /* Responsive for small screens */
         @media (max-width: 500px) {
             h1 { font-size: 2rem; }
             .heart-message { font-size: 1.2rem; }
+            .timer-display { font-size: 1.8rem; }
             .cute-btn { font-size: 1.5rem; padding: 0.8rem 1.8rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Optional floating hearts decoration -->
     <div class="floating-heart" style="top: 10%; left: 5%;">🌸</div>
     <div class="floating-heart" style="top: 20%; right: 8%; animation-delay: 2s;">💖</div>
     <div class="floating-heart" style="bottom: 15%; left: 10%; animation-delay: 3s;">✨</div>
     <div class="floating-heart" style="bottom: 25%; right: 15%; animation-delay: 1s;">🌼</div>
 
     <div class="container">
-        <h1>Hello Dee💌</h1>
+        <h1>Hello [Her Name] 💌</h1>
         <div class="heart-message">
             I've made something special just for you...<br>
             Click the button below to begin.
         </div>
+
+        <!-- Count-up timer -->
+        <div class="timer-container">
+            <div class="timer-label">⏰ We've been talking for...</div>
+            <div class="timer-display" id="timer">0 days 00:00:00</div>
+            <div style="font-size:0.9rem; color:#8b3a5a; margin-top:0.5rem;">
+                (since March 2, 2026 · 5:51 PM)
+            </div>
+        </div>
+
         <button class="cute-btn" id="nextBtn">Open Me 💖</button>
     </div>
 
     <script>
+        // Set the start date and time (year, month, day, hour, minute, second)
+        // Month is 0-indexed in JavaScript: 2 = March
+        const startDate = new Date(2026, 2, 2, 17, 51, 0); // March 2, 2026, 17:51:00
+
+        function updateTimer() {
+            const now = new Date();
+            const diffMs = now - startDate; // difference in milliseconds
+
+            if (diffMs < 0) {
+                // If the start date is in the future, show zeros
+                document.getElementById('timer').innerText = '0 days 00:00:00';
+                return;
+            }
+
+            // Calculate days, hours, minutes, seconds
+            const totalSeconds = Math.floor(diffMs / 1000);
+            const days = Math.floor(totalSeconds / 86400);
+            const hours = Math.floor((totalSeconds % 86400) / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+
+            // Format with leading zeros
+            const formattedHours = hours.toString().padStart(2, '0');
+            const formattedMinutes = minutes.toString().padStart(2, '0');
+            const formattedSeconds = seconds.toString().padStart(2, '0');
+
+            document.getElementById('timer').innerText = `${days} days ${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+        }
+
+        // Update immediately and then every second
+        updateTimer();
+        setInterval(updateTimer, 1000);
+
+        // Button click to go to next page
         document.getElementById('nextBtn').addEventListener('click', function() {
-            // Replace 'page2.html' with the actual file name of your next page
             window.location.href = 'page2.html';
-            // If you want to test without creating page2 yet, use:
-            // alert("Next page will go here! (Now create page2.html)");
         });
     </script>
 </body>

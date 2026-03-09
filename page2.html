@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will you be my girlfriend? 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(145deg, #ffe6f0 0%, #ffd9e8 100%);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            padding: 3rem 2rem;
+            border-radius: 40px;
+            box-shadow: 0 20px 40px rgba(255, 120, 160, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #b34167;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+        }
+
+        .message {
+            font-size: 1.6rem;
+            color: #8b3a5a;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+            background: rgba(255, 255, 255, 0.4);
+            padding: 1.5rem;
+            border-radius: 30px;
+            box-shadow: inset 0 2px 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .question {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #b34167;
+            margin: 2rem 0;
+            padding: 1rem;
+            border-top: 2px dashed #ffa5b9;
+            border-bottom: 2px dashed #ffa5b9;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            position: relative;
+            min-height: 100px;
+        }
+
+        .btn {
+            font-size: 2rem;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            font-weight: bold;
+            letter-spacing: 2px;
+            transition: all 0.2s ease;
+            box-shadow: 0 8px 0 #8b3a5a, 0 8px 20px rgba(255, 80, 120, 0.4);
+            border: 2px solid white;
+            outline: none;
+        }
+
+        .btn-yes {
+            background: #ff8aa1;
+            color: white;
+        }
+
+        .btn-yes:hover {
+            transform: translateY(5px);
+            box-shadow: 0 3px 0 #8b3a5a, 0 8px 20px rgba(255, 80, 120, 0.4);
+            background: #ff7595;
+        }
+
+        .btn-yes:active {
+            transform: translateY(8px);
+            box-shadow: 0 0 0 #8b3a5a, 0 8px 20px rgba(255, 80, 120, 0.4);
+        }
+
+        .btn-no {
+            background: #d9b0b9;
+            color: #5e3a44;
+            box-shadow: 0 8px 0 #7a5a64, 0 8px 20px rgba(120, 80, 100, 0.3);
+            position: relative;
+            transition: all 0.1s ease;
+        }
+
+        /* floating hearts decoration (same as page1) */
+        .floating-heart {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.6;
+            animation: float 6s infinite;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @media (max-width: 500px) {
+            h1 { font-size: 2rem; }
+            .message { font-size: 1.3rem; }
+            .question { font-size: 1.8rem; }
+            .btn { font-size: 1.5rem; padding: 0.8rem 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- floating decorations (optional) -->
+    <div class="floating-heart" style="top: 10%; left: 5%;">🌸</div>
+    <div class="floating-heart" style="top: 20%; right: 8%; animation-delay: 2s;">💖</div>
+    <div class="floating-heart" style="bottom: 15%; left: 10%; animation-delay: 3s;">✨</div>
+    <div class="floating-heart" style="bottom: 25%; right: 15%; animation-delay: 1s;">🌼</div>
+
+    <div class="container">
+        <h1>For You 💌</h1>
+        <div class="message">
+            From the moment we met, my world became brighter.<br>
+            Every laugh, every conversation, every moment with you is special.
+        </div>
+        <div class="question">
+            Will you be my girlfriend? 💕
+        </div>
+        <div class="button-container" id="buttonContainer">
+            <button class="btn btn-yes" id="yesBtn">Yes 💖</button>
+            <button class="btn btn-no" id="noBtn">No</button>
+        </div>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const container = document.getElementById('buttonContainer');
+
+        // Yes button action – redirect to a happy page
+        yesBtn.addEventListener('click', () => {
+            // You can replace 'yes.html' with the actual page you create
+            window.location.href = 'yes.html';
+            // For testing, you can use an alert:
+            // alert("Yay! She said YES! 🎉");
+        });
+
+        // Function to move the No button randomly within the container
+        function moveNoButton() {
+            const containerRect = container.getBoundingClientRect();
+            const noBtnRect = noBtn.getBoundingClientRect();
+
+            // Maximum positions so the button stays inside the container
+            const maxX = containerRect.width - noBtnRect.width;
+            const maxY = containerRect.height - noBtnRect.height;
+
+            // Generate random offsets within bounds
+            const randomX = Math.min(Math.max(0, Math.random() * maxX), maxX);
+            const randomY = Math.min(Math.max(0, Math.random() * maxY), maxY);
+
+            // Apply the new position (relative to container)
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        // Move the No button when hovered
+        noBtn.addEventListener('mouseover', moveNoButton);
+
+        // Also move it when clicked (so even if she manages to click, it escapes)
+        noBtn.addEventListener('click', (e) => {
+            e.preventDefault();  // Prevent any default action
+            moveNoButton();
+
+            // Optional: change the button text playfully after a few attempts
+            if (!noBtn.dataset.clickCount) {
+                noBtn.dataset.clickCount = 1;
+            } else {
+                noBtn.dataset.clickCount = parseInt(noBtn.dataset.clickCount) + 1;
+            }
+
+            if (noBtn.dataset.clickCount == 2) {
+                noBtn.textContent = 'Are you sure?';
+            } else if (noBtn.dataset.clickCount == 3) {
+                noBtn.textContent = 'Really? 🥺';
+            } else if (noBtn.dataset.clickCount == 4) {
+                noBtn.textContent = 'Think again!';
+            } else if (noBtn.dataset.clickCount >= 5) {
+                noBtn.textContent = 'Just click Yes 💕';
+            }
+        });
+
+        // Ensure the No button stays within container if window resizes
+        window.addEventListener('resize', () => {
+            // Reset position to avoid going out of bounds; you can also re-call moveNoButton
+            noBtn.style.position = 'relative';
+            noBtn.style.left = 'auto';
+            noBtn.style.top = 'auto';
+        });
+    </script>
+</body>
+</html>

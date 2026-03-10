@@ -52,6 +52,9 @@
             animation: sway 3s infinite;
             display: inline-block;
         }
+        /* Optional: make the secret flower clickable but without changing its look.
+           Uncomment the next line if you want a pointer cursor. */
+        /* #secret-flower { cursor: pointer; } */
         @keyframes sway {
             0% { transform: rotate(0deg); }
             50% { transform: rotate(10deg); }
@@ -85,9 +88,9 @@
             <p>Here's to us – to long walks, silly arguments that end in smiles, to supporting each other's dreams, and to building a love story that we'll tell our grandkids.</p>
             <p>I love you more than all the stars in the sky. 💫</p>
         </div>
-        <div class="flower">🌼</div>
+        <!-- Bottom flower – now clickable (opens secret.html) -->
+        <div class="flower" id="secret-flower" onclick="window.location.href='secret.html';">🌼</div>
         <br>
-        <!-- Optional: Add more promises or a little surprise -->
         <button class="back-home" onclick="window.location.href='yes.html';">Back to our celebration</button>
     </div>
 </body>
